@@ -1,24 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import * as Plot from './Components/Plot/React';
 
-function App() {
+
+function App() {  
+  const data1 = [12, 5, 6, 6, 9, 10];
+  const data2 = [1, 10, 15, 12, 10, 2];
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <div>
+      <div>Testing</div>
+      <Plot.BarChart data={data1} id='bar1'></Plot.BarChart>
+      <Plot.PieChart id='pie1'></Plot.PieChart>
+      <Plot.Histogram id='hist1'></Plot.Histogram>
+      <Plot.Choropleth id='choro1'></Plot.Choropleth> 
+    </div> 
   );
 }
 

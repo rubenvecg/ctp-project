@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.bar svg{
+  background: tomato;
+}
+
+.pie svg{
+  background: lime
+}
+
+.histogram svg{
+  background: lightcoral
+}
+
+.choropleth svg{
+  background: darkcyan
+}
