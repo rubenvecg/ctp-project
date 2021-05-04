@@ -1,21 +1,12 @@
 import { useEffect } from 'react';
 import {Figure, Hist} from '../D3';
 
-function Histogram(props){
-    
-    useEffect(() => {
-        const fig = Figure({
-            'id': props.id,
-            'width': props.width,
-            'height': props.height
-        })
-
-        const hist = Hist(fig, { 
-            'data': props.data
-        })
-    }, [props.width, props.height, props.data])
-
-    const missingId = (props.id == null);
+function Histogram({
+    id,
+    data,
+    props}){
+        
+    const missingId = (id == null);
 
     if(missingId){
         return(
@@ -23,7 +14,9 @@ function Histogram(props){
         )
     }else{
         return(
-            <div class='histogram chart' id={props.id}></div>
+            <Figure class='bar' id={id} width={props.width} height={props.height}>
+                <Hist data={data} props={props}></Hist>
+            </Figure>
         )
     }    
 }

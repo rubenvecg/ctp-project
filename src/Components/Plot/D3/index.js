@@ -1,9 +1,8 @@
-import Figure from './Figure'
+import Figure from './Figure/Figure'
 import Bar from './Bar'
 import Pie from './Pie'
 import Hist from './Hist'
-import Choro from './Choro'
 
 export {
-    Figure, Bar, Pie, Hist, Choro
+    Figure, Bar, Pie, Hist
 }

@@ -1,21 +1,13 @@
 import { useEffect } from 'react';
 import {Figure, Bar} from '../D3';
 
-function BarChart(props){
-    
-    useEffect(() => {
-        const fig = Figure({
-            'id': props.id,
-            'width': props.width,
-            'height': props.height
-        })
+const BarChart = ({
+    id,
+    data, 
+    labels, 
+    props}) => {
 
-        const bar = Bar(fig, { 
-            'data': props.data
-        })
-    }, [props.width, props.height, props.data])
-
-    const missingId = (props.id == null);
+    const missingId = (id == null);
 
     if(missingId){
         return(
@@ -23,7 +15,15 @@ function BarChart(props){
         )
     }else{
         return(
-            <div class='bar chart' id={props.id}></div>
+            <Figure class='bar' 
+                id={id} 
+                width={props.width} 
+                height={props.height} 
+                background={props.backgroundColor}
+                text={props.textColor}
+            >
+                <Bar data={data} labels={labels} props={props}></Bar>
+            </Figure>
         )
     }    
 }
