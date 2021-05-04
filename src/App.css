@@ -37,18 +37,7 @@
   }
 }
 
-.bar svg{
-  background: tomato;
+#hist1 svg{
+  background: lightgreen;
 }
 
-.pie svg{
-  background: lime
-}
-
-.histogram svg{
-  background: lightcoral
-}
-
-.choropleth svg{
-  background: darkcyan
-}

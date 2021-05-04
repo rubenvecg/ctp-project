@@ -1,20 +1,84 @@
+import { useEffect, useState } from 'react';
 import './App.css';
 import * as Plot from './Components/Plot/React';
 
 
 function App() {  
-  const data1 = [12, 5, 6, 6, 9, 10];
-  const data2 = [1, 10, 15, 12, 10, 2];
+
+  const genData = (count) => {
+    let data = []
+    let labels = []
+
+    for(var i=0; i<count; i++){
+      data.push(Math.floor(Math.random() * 110))
+      labels.push("Label #" + String.fromCharCode(i + 65))
+    }
+
+    return [data, labels]
+  }
+
+  const barProps = {
+    width: 800,
+    height: 500,
+    barColor: 'purple',
+    backgroundColor: '#222',
+    textColor: '#aaa',
+    showValues: true,
+    title: "Long plot title for testing x vs y",
+    xLabel: "X axis",
+    yLabel: "Y axis"
+  }
+
+  const histProps = {
+    width: 800,
+    height: 500
+  }
+
   
+  const [data, setData] = useState(null)
+  const [labels, setLabels] = useState(null)
+  const [isLoaded, setIsLoaded] = useState(false)
+
+
+
+  const toggleData = (length) => {
+    const[gData,gLabels] = genData(length)
+
+    setData(gData)
+    setLabels(gLabels)
+  }
+
+  useEffect(() => {
+    toggleData(10)
+  }, [])
   
   return (
     
     <div>
-      <div>Testing</div>
-      <Plot.BarChart data={data1} id='bar1'></Plot.BarChart>
-      <Plot.PieChart id='pie1'></Plot.PieChart>
-      <Plot.Histogram id='hist1'></Plot.Histogram>
-      <Plot.Choropleth id='choro1'></Plot.Choropleth> 
+        
+        <Plot.BarChart 
+          data={data} 
+          labels={labels}            
+          id='bar1' 
+          props={barProps}>
+        </Plot.BarChart>
+
+        <select value={0} onChange={(e) => { if(e.target.value != 0) toggleData(e.target.value)}}> 
+            <option></option>
+            <option>10</option>
+            <option>20</option>
+            <option>30</option>  
+        </select>  
+
+        <Plot.Histogram 
+          data={['a', 'b', 'c', 'd', 'd']}            
+          id='hist1' 
+          props={barProps}>
+        </Plot.Histogram>
+
+        
+
+            
     </div> 
   );
 }
