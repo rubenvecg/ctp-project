@@ -20,13 +20,13 @@ function App() {
   const barProps = {
     width: 800,
     height: 500,
-    barColor: 'purple',
     backgroundColor: '#222',
     textColor: '#aaa',
-    showValues: true,
     title: "Long plot title for testing x vs y",
     xLabel: "X axis",
-    yLabel: "Y axis"
+    yLabel: "Y axis",
+    marginLeft: 100,
+    marginBottom: 150
   }
 
   const histProps = {
