@@ -1,0 +1,13 @@
+.bar{
+    transition: fill 0.5s;
+    fill: darkolivegreen;
+}
+
+.bar:hover{    
+    fill: darkslategray;
+}
+
+.barChartToolTip{
+    
+}
+

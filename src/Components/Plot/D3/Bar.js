@@ -1,6 +1,7 @@
 import FigureContext from "./Figure/FigureContext"
 import * as d3 from "d3"
 import { useContext, useEffect, useState } from "react"
+import { fireEvent } from "@testing-library/dom"
 
 const Bar = ({data, labels, props}) => {
 
@@ -39,7 +40,7 @@ const Bar = ({data, labels, props}) => {
         const xLabelPositionX = width - marginRight
         const xLabelPositionY = height - marginBottom/4
 
-        const yLabelPositionX = marginLeft
+        const yLabelPositionX = marginLeft/4
         const yLabelPositionY = yAxis(max/2)
                 
 
@@ -47,7 +48,7 @@ const Bar = ({data, labels, props}) => {
             return xAxis(labels[i]) + barWidth*0.2
         }
 
-        const y = (d) => {
+        const y = (d, i) => {
             return yAxis(d)
         }
 
@@ -55,46 +56,47 @@ const Bar = ({data, labels, props}) => {
             return d/max * maxBarHeight
         } 
 
+        const xLabelTranslate = (d, i) => {
+            const xTranslate = -2 * labels[i].length
+            const yTranslate = 1.5 * labels[i].length
+            return `translate(${xTranslate}, ${yTranslate})rotate(-45)`
+        }
+
+
         // Individual bars
         fig.selectAll("rect")
             .data(data)
             .enter()
             .append("rect")
+            .attr("class", "bar")
             .attr("x", (d, i) => x(d, i))
             .attr("y", (d, i) => y(0, 0))
             .attr("width", barWidth)
             .attr("height", (d, i) => 0)
-            .attr("fill", props.barColor)
+            .style("cursor", "pointer")
             .transition()
             .duration(1000)
             .attr("y", (d, i) => y(d,i))
-            .attr("height", (d, i) => barHeight(d,i))
-            
-    
-        // Bar annotations
-        fig.selectAll("text")
-            .data(data)
-            .enter()
-            .append("text")
-            .text((d) => props.showValues ? d : "")
-            .attr("x", (d, i) => x(d,i) + barWidth/2) 
-            .attr("y", (d, i) => y(0,0)) 
-            .attr("width", 2)
-            .attr("font-size", barWidth/30 * barCount)          
-            .attr("text-anchor", "middle")
-            .transition()
-            .duration(1000)
-            .attr("y", (d, i) => y(d + 2,i))
-            .attr("height", (d, i) => barHeight(d,i))
-        
+            .attr("height", (d, i) => barHeight(d,i))            
+
         //Attach axes to figure
         fig.append("g")  
             .attr('transform', `translate(0,${height - marginBottom})`)
+            .attr("class", "xAxis")
             .call(d3.axisBottom(xAxis))
+
+        //Transform x axis labels
+        fig.select(".xAxis")
             .selectAll("text")
-            .attr("transform", `translate(-20, 15) rotate(-45)`) 
             .attr("text-achor", "end")
-            .style('fill', props.textColor)        
+            .attr("transform", (d, i) => xLabelTranslate(d, i))
+            .style('fill', props.textColor)
+            
+        fig.append("g")  
+            .attr('transform', `translate(${marginLeft}, 0)`)            
+            .call(d3.axisLeft(yAxis))
+            .selectAll("text")
+            .style('fill', props.textColor) 
 
         //Title
         fig.append("text")
@@ -104,22 +106,41 @@ const Bar = ({data, labels, props}) => {
             .attr("font-size", fontSize)          
             .attr("text-anchor", "middle")
 
-        //X label
+        //X-axis label
         fig.append("text")
             .text(props.xLabel)
             .attr("x", (d, i) => xLabelPositionX) 
             .attr("y", (d, i) => xLabelPositionY) 
             .attr("font-size", fontSize)          
-            .attr("text-anchor", "middle") 
+            .attr("text-anchor", "end") 
 
-        //Y label
-        fig.append("text")                   
+        //Y-axis label
+        fig.append("text")  
+            .attr("id", "yAxisTitle")                 
             .attr("x", yLabelPositionX) 
             .attr("y", yLabelPositionY) 
             .attr("font-size", fontSize) 
-            .attr("text-anchor", "middle")
+            .attr("text-anchor", "end")
             .attr("transform", `rotate(-90, ${yLabelPositionX}, ${yLabelPositionY})`) 
             .text(props.yLabel)
+        
+        //Add tooltip
+        const toolTip = fig.append("text")
+                            .attr("opacity", 0)
+        
+        fig.selectAll("rect")
+        .on("mousemove", function (d, i) {
+            toolTip.attr("opacity", 1)
+                    .attr("x", d.pageX)
+                    .attr("y", d.pageY - 10)
+                    .text(i)         
+        })
+        .on("mouseout", function(d, i) {
+            toolTip.attr("opacity", 0)
+        })
+        
+
+        
     }
 
     useEffect(() => {
