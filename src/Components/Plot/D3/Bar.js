@@ -131,8 +131,8 @@ const Bar = ({data, labels, props}) => {
         fig.selectAll("rect")
         .on("mousemove", function (d, i) {
             toolTip.attr("opacity", 1)
-                    .attr("x", d.pageX)
-                    .attr("y", d.pageY - 10)
+                    .attr("x", d.offsetX)
+                    .attr("y", d.offsetY - 10)
                     .text(i)         
         })
         .on("mouseout", function(d, i) {
