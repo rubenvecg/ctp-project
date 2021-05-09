@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import * as Plot from './Components/Plot/React';
 import MapBox from './Components/Plot/React/MapBox';
+import './Styles/themes.scss';
 
 
 function App() {  

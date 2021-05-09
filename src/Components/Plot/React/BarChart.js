@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import {Figure, Bar} from '../D3';
 import { load } from '../../../Data/d3-processing'
-import "../../../Styles/BarChartStyles.css"
+import "../../../Styles/BarChartStyles.scss"
 import * as d3 from "d3"
 import arraySort from "array-sort"
 
@@ -37,7 +37,7 @@ const BarChart = ({
             return <div>Loading</div>
         }else{
             return(
-                <Figure class='bar' 
+                <Figure class='bar'
                     id={id} 
                     width={props.width} 
                     height={props.height} 

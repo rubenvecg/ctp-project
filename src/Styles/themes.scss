@@ -1,0 +1,13 @@
+$bgcolor: #212121;
+$darkRed: #903749;
+$red: #E84545;
+
+html{
+  background-color: $bgcolor;
+  // font-family: 'Barlow', sans-serif;
+}
+:export{
+  bgcolor: $bgcolor;
+  darkRed: $darkRed;
+  red: $red;
+}
