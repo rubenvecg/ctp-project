@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+
+.boundary{
+    cursor: pointer;
+}
+.boundary:hover{
+  transition: fill 0.2s;
+  fill: darkslategray;
+}
+
+.test-tooltip{
+  position: absolute;
+  background: #444;
+  border-radius: 10px; 
+  font-size: 12px;
+  color: #aaa;
+  padding: 10px;
+  transition: opacity 0.2s;
+}
+
+.test-tooltip p{
+  margin: 0px;
+  text-align: center;
+}
+
+.bar{
+  fill: red
+}
