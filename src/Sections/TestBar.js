@@ -1,7 +1,6 @@
 import {useEffect, useState} from "react"
 import * as d3 from "d3"
 import styled from 'styled-components'
-import Spinner from "react-bootstrap/Spinner"
 import * as Plot from "../Components/Plot/React"
     
 const barProps = {
@@ -61,7 +60,6 @@ const TestBar = () => {
     if(!isLoaded){
         return (
             <LoadingContainer>
-                <Spinner animation="border" variant="light" />
                 Loading...
             </LoadingContainer>
         )

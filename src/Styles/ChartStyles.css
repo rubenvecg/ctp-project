@@ -1,4 +1,8 @@
 /*Global styling settings here*/
 .bar{
-  
+  fill: darkolivegreen;
+}
+
+.bar.bar-male{
+  fill: blueviolet
 }

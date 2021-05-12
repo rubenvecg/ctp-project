@@ -1,6 +1,5 @@
 import {useEffect, useState} from 'react'
 import styled from 'styled-components'
-import Spinner from "react-bootstrap/Spinner"
 import * as Plot from "../Components/Plot/React"
 import * as d3 from "d3"
 
@@ -77,7 +76,6 @@ const TestHist = () => {
     if(!isLoaded){
         return (
             <LoadingContainer>
-                <Spinner animation="border" variant="light" />
                 Loading...
             </LoadingContainer>
         )

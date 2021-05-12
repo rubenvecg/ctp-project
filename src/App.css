@@ -1,5 +1,10 @@
 .App {
-  text-align: center;
+  text-align: center;  
+}
+
+#root{
+  background-color: #282c34;
+  color: white;
 }
 
 .App-logo {
@@ -62,5 +67,5 @@
 }
 
 .bar{
-  fill: red
+  fill: darkolivegreen;
 }

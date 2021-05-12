@@ -1,7 +1,7 @@
 import BarChart from './BarChart'
-import PieChart from './PieChart'
 import Histogram from './Histogram'
+import GeoJSONMap from './GeoJSONMap'
 
 export {
-    BarChart, PieChart, Histogram
+    BarChart, Histogram, GeoJSONMap
 }
