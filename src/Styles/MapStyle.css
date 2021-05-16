@@ -1,11 +1,17 @@
-#map{
-    display: grid;
+#map .boundary:hover{
+    fill: tomato;
 }
 
-#map svg{
-    margin: 0 auto;
+#map .map-tooltip{
+    background: red;
+    font-size: 14px;
 }
 
 .map-container{
-    display: grid;    
+    display: grid;
+    grid-template-rows: 75% 25%;   
+}
+
+text{
+    fill: white;
 }

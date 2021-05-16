@@ -26,8 +26,6 @@ function App() {
           <Dashboard></Dashboard>
         </div>
 
-        <TestHist></TestHist>
-
             
     </div> 
   );

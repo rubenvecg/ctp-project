@@ -1,57 +1,57 @@
 import {React, useState, useEffect} from 'react'
-import * as d3 from 'd3'
 import styled from "styled-components"
-import {BarChart, GeoJSONMap} from "../../Components/Plot/React"
 import BoundarySelector from './BoundarySelector'
-import RaceChart from './RaceChart'
+import {RaceChart, AgeSexChart, GeoJSONMap, CrimeChart} from '../../Components/Plot'
 import {getColName, cleanName} from '../../HelperFunctions/Indexing'
-import AgeSexChart from './AgeSexChart'
-
-let width = 600
-let height = 500
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    height: ${height + 100}px;
+    grid-template-columns: 1fr 1fr;
+    height: 100vh;
 
 
     & .viz{
         display: grid;
-        grid-template-rows: 120px 1fr 1fr;
-        height: ${height + 100}px;
+        grid-template-rows: 120px 1fr 250px;
+        height: 100%;
+    }
+
+    #crime-info{
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
     }
 
     #demographics{
         display: grid;
-        grid-template-columns: 50% 50%;
+        grid-template-columns: repeat(2, 1fr);
     }
 `
 const Dashboard = () => {
     const [boundary, setBoundary] = useState("schoolDistricts") 
     const [index, setIndex] = useState(null) 
     const [count, setCount] = useState(null)
-    const [test, setTest] = useState(new Date())
 
-    const handleBoundaryClick = (index, count) => {
-        setIndex(index)
-        setCount(count)
+    const colName = boundary == "boroughs" ? getColName(boundary).name : getColName(boundary)
+
+    const handleBoundaryClick = (d) => {
+        setIndex(d[colName])
+        setCount(d['CrimeCount'])
     }
 
     const mapProps = {
-        width: width,
-        height: height,
+        width: 600,
+        height: 500,
         toolTipCols:{
             name: cleanName(boundary),
-            valueCol: boundary == "boroughs" ? getColName(boundary).name : getColName(boundary),
+            valueCol: colName,
             value: "CrimeCount"
         }
     }
     
     return (
-    <Grid>       
-        <GeoJSONMap boundary={boundary} id="map" props={mapProps}
-            onBoundaryClick={(i, v) => {handleBoundaryClick(i, v)}}>
+    <Grid>   {    boundary &&
+        <GeoJSONMap boundary={boundary} id="map"
+            onBoundaryClick={(d) => {handleBoundaryClick(d)}}>
 
                 <BoundarySelector value={boundary} 
                 onChange={(b) => {
@@ -59,26 +59,28 @@ const Dashboard = () => {
                     setIndex(null)
                     setCount(null)
                 }}/>
-        </GeoJSONMap>
+        </GeoJSONMap>}
 
         <div className="viz">
-            <div className="summary">                
+            <div className="summary">
+                {index &&                
                 <div>
                     <p>2020</p>
                     <p>{cleanName(boundary)}{boundary !== "boroughs" ? " #" : ""}: {index}</p>
                     <p>Crime Count: {count}</p>
-                </div>                
+                </div>}                
             </div>
-
-            <div id="crime-list">
+            {index &&
+            <div id='crime-info'>
+                <CrimeChart by={boundary} index={index} id="crime-type"></CrimeChart>
             </div> 
-
+            }
             <div id="demographics">
                 <div>
-                    <AgeSexChart by={boundary} index={index} props={{width: 341, height: 240}} id="age-sex"></AgeSexChart>
+                    {index && <AgeSexChart by={boundary} index={index} props={{width: 341, height: 240}} id="age-sex"></AgeSexChart>}
                 </div>
                 <div>
-                    <RaceChart by={boundary} index={index} props={{width: 341, height: 240}} id="race"></RaceChart> 
+                    {index && <RaceChart by={boundary} index={index} props={{width: 341, height: 240}} id="race"></RaceChart> }
                 </div>
             </div> 
         </div>

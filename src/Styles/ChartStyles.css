@@ -1,8 +1,32 @@
 /*Global styling settings here*/
-.bar{
+#race .bar{
   fill: darkolivegreen;
 }
 
-.bar.bar-male{
-  fill: blueviolet
+#age-sex .bar-right{
+  fill: darkslategray;
+}
+
+#age-sex .bar-left{
+  fill: darkolivegreen
+}
+
+#map-bar .bar{
+  fill: darkolivegreen
+}
+
+#crime-type-tooltip{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+}
+
+#selected-crime-type > p{
+  margin: 0px;
+}
+
+.bar-selected{
+  transition: fill 0.5s;
+  fill: tomato;
 }

@@ -1,22 +1,17 @@
-import React from 'react'
-import * as d3 from 'd3'
-import {useEffect} from 'react'
+const d3 = require('d3')
+const styling = require('../../../HelperFunctions/Styling')
 
-const BarChart = ({
-    id,
-    props,
-    data,
-    labels,
-    }) => {
+let fig = null
 
-    useEffect(() => {
-        if(!data) return
-            const width = props.width
-            const height = props.height
-
+module.exports = {
+    drawChart: ({id, size, data, xCol, yCol}) => {
             d3.select(`#${id} > *`).remove()
+            let [width, height] = size ? size : styling.getDimensions(id)
 
-            const fig = d3
+            const labels = data.map(d => d[xCol])
+            const values = data.map(d => d[yCol])
+
+            fig = d3
             .select(`#${id}`)
             .append("svg")
             .attr("width", width).attr("height", height)
@@ -26,7 +21,7 @@ const BarChart = ({
             const marginTop = height * 0.05
             const marginBottom = height * 0.05        
             const maxBarHeight = height - marginTop - marginBottom
-            const max = d3.max(data)
+            const max = d3.max(values)
 
 
             let xAxis = d3.scaleBand()                    
@@ -49,10 +44,6 @@ const BarChart = ({
 
             const barHeight = (d, i) => {
                 return d/max * maxBarHeight
-            } 
-
-            const getClass = (d, i) => {
-                return "bar"
             }
 
             // Individual bars
@@ -68,28 +59,41 @@ const BarChart = ({
                 .style("cursor", "pointer")
                 .transition()
                 .duration(1000)
-                .attr("y", (d, i) => y(d,i))
-                .attr("height", (d, i) => barHeight(d,i))            
+                .attr("y", (d, i) => y(d[yCol],i))
+                .attr("height", (d, i) => barHeight(d[yCol],i))            
             
             //Add tooltip
             const toolTip = fig.append("text")
                                 .attr("opacity", 0)
             
             fig.selectAll("rect")
-            .on("mousemove", function (d, i) {
+            /*.on("mousemove", function (e, d) {
                 toolTip.attr("opacity", 1)
-                        .attr("x", d.offsetX)
-                        .attr("y", d.offsetY - 10)
-                        .text(i)         
+                        .attr("x", e.offsetX)
+                        .attr("y", e.offsetY - 10)
+                        .style("font-size", 12)
+                        .text(`${d[xCol]}: ${d[yCol]}`)         
             })
-            .on("mouseout", function(d, i) {
+            .on("mouseout", function(e, d) {
                 toolTip.attr("opacity", 0)
-            })
-            console.log(maxBarHeight)        
-    }, [data])
-    
-    return <div id={id}></div>
+            })  */
+    },
+
+    selectBar: (index) => {
+        if(!fig) return
+
+        //toolTip.html("<p>Testing</p>")
+
+        fig.selectAll('rect').attr("class", (d, i) => {
+                if(d[index.col] == index.val)
+                    return 'bar bar-selected'
+                else
+                    return 'bar'
+            })        
+    },
+
+    clearSelected: () => {
+        if(!fig) return
+        fig.selectAll('rect').attr("class", "bar")
+    }
 }
-
-export default BarChart;
-

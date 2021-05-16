@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react"
 import * as d3 from "d3"
 import styled from 'styled-components'
-import * as Plot from "../Components/Plot/React"
+import * as Plot from "../Components/Plot"
     
 const barProps = {
     width: 500,
