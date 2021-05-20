@@ -30,7 +30,7 @@ const Dashboard = () => {
     
     return (
     <MainContainer>
-        
+                
         <MapSection year={year} boundary={boundary} index={index}
                     onBoundaryClick={handleBoundaryClick} 
                     onBoundaryChange={handleBoundaryChange} 

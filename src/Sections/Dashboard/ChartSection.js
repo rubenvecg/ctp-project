@@ -1,4 +1,4 @@
-import {ChartSectionContainer} from './Style'
+import {ChartSectionContainer, LoadingContainer} from './Style'
 import {Charts, Chart} from '../../Components/Chart'
 import {RaceChart, AgeSexChart, CrimeChart, AreaChart} from '../../Components/Plot'
 import Banner from './Banner'
@@ -6,6 +6,8 @@ import Banner from './Banner'
 const ChartSection = ({year, boundary, index, count}) => {
     return ( 
         <ChartSectionContainer>
+            <LoadingContainer><div>Loading...</div></LoadingContainer>
+
             <Banner year={year} boundary={boundary} index={index} count={count}></Banner>
 
             <Charts id='charts'>

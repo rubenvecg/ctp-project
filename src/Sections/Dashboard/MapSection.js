@@ -1,5 +1,5 @@
 import {GeoJSONMap} from '../../Components/Plot'
-import {MapContainer, MapControls} from './Style'
+import {MapContainer, MapControls, LoadingContainer, LoadingSpinner} from './Style'
 
 const buildYearOptions = () => {
     const options = []
