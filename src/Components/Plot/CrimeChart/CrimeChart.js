@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import * as d3 from 'd3'
 import {getDimensions} from '../../../HelperFunctions/Styling'
-import {getColName, getBoroName} from '../../../HelperFunctions/Indexing'
+import {getColName, getBoroName, getFileLink} from '../../../HelperFunctions/Indexing'
 import * as Plot from './Plot'
-
-const url = {
-    boroughs: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/offenses_by_boro.csv",
-    schoolDistricts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/offenses_by_school_district.csv",
-    policePrecincts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/offenses_by_police_precinct.csv"
-}
 
 const gridStyle = {
     display: 'grid',
@@ -16,7 +10,7 @@ const gridStyle = {
     height: '100%'
 }
 
-const CrimeChart = ({by, index, props, id}) => {
+const CrimeChart = ({year, by, index, props, id}) => {
 
     const colName = (by == "boroughs") ? getColName(by).code : getColName(by)
     const [top, setTop] = useState(5)
@@ -27,11 +21,11 @@ const CrimeChart = ({by, index, props, id}) => {
         
         let data = []
 
-        d3.csv(url[by], (r) => {
+        d3.csv(getFileLink(year, by, 'offenses'), (r) => {
             if(r[colName] == index || getBoroName(r[colName]) == index){
                 data.push({
-                    value: parseInt(r['0']),
-                    label: r['OFNS_DESC']
+                    value: parseInt(r['CrimeCount']),
+                    label: r['OfnsDesc']
                 })              
             }
 
@@ -40,12 +34,12 @@ const CrimeChart = ({by, index, props, id}) => {
         .then(()=> {
             Plot.drawChart({id, data, xCol: "label", yCol: "value", top: top}, (s) => {
                 setSelected(s)
-            })         
+            })        
         })
         .catch((error) => {
             console.log(error)
         })
-    }, [by, index, top])  
+    }, [year, by, index, top])  
 
     return (<div style={gridStyle}>
                 <div style={{position: 'relative'}}>
@@ -56,7 +50,7 @@ const CrimeChart = ({by, index, props, id}) => {
                         <option>20</option>
                     </select>
                     <div id='selected-crime-type'>
-                        <p>{selected ? `Offense type: ${selected}` : 'Hover on a bar to learn more'}</p>
+                        <p style={{fontSize: 12}}>{selected ? `Offense type: ${selected}` : 'Hover on a bar to learn more'}</p>
                     </div>
                 </div>
                 <div><div id={id}></div></div>

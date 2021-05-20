@@ -3,21 +3,15 @@ import {React, useEffect} from "react"
 import "../../../Styles/MapStyle.css"
 import * as Plot from './Plot'
 import * as BarPlot from '../BarChart/Plot'
-import {getColName} from '../../../HelperFunctions/Indexing'
+import {getColName, getGeoJSONLink} from '../../../HelperFunctions/Indexing'
 
-const url = {
-    boroughs: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/boroughs.geojson",
-    schoolDistricts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/school_districts.geojson",
-    policePrecincts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/police_precincts.geojson" 
-}
-
-
-const GeoJSONMap = ({id, boundary, onBoundaryClick, props, children}) => {
+const GeoJSONMap = ({id, year, boundary, index, onBoundaryClick, props, children, onYearChange}) => {
     const colName = (boundary == "boroughs") ? getColName(boundary).code : getColName(boundary)
     useEffect(() => {
-        d3.json(url[boundary])
+        d3.json(getGeoJSONLink(boundary))
         .then((g) => {
-            Plot.drawMap({id, g, colorProp: 'CrimeCount',
+
+            Plot.drawMap({id, g, colorProp: 'CrimeCount_' + year,
                 onBoundaryOver: (d) => BarPlot.selectBar({
                     col: colName,
                     val: d.properties[colName]
@@ -26,28 +20,24 @@ const GeoJSONMap = ({id, boundary, onBoundaryClick, props, children}) => {
                 onBoundaryClick: (d) => onBoundaryClick(d)
             })
 
-            BarPlot.drawChart({id: id+'bar', data: g.features.map(f => f.properties), xCol: colName, yCol: 'CrimeCount', values:[1,2,3], labels:['a','b','c']})
+            BarPlot.drawChart({id: id+'-bar', data: g.features.map(f => f.properties), xCol: colName, yCol: 'CrimeCount_' + year, values:[1,2,3], labels:['a','b','c']})
         })
         .catch((error) => {
             console.log(error)
         })
 
               
-    }, [boundary])
+    }, [boundary, year])
     
     
-    return  <div className="map-container">
+    return( 
             
             <div>
                 <div id={id}>
                     {children}                
                 </div>
             </div>
-            
-            <div>
-                <div id={id+'bar'}></div>
-            </div>
-            </div>
+            )
 }
  
 export default GeoJSONMap;

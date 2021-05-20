@@ -2,11 +2,6 @@
   text-align: center;  
 }
 
-#root{
-  background-color: #282c34;
-  color: white;
-}
-
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -42,30 +37,15 @@
   }
 }
 
-
-.boundary{
-    cursor: pointer;
-}
-.boundary:hover{
-  transition: fill 0.2s;
-  fill: darkslategray;
+#root{
+  width: 1100px;
+  margin: 0 auto;
 }
 
-.test-tooltip{
-  position: absolute;
-  background: #444;
-  border-radius: 10px; 
-  font-size: 12px;
-  color: #aaa;
-  padding: 10px;
-  transition: opacity 0.2s;
+#root > div{
+  height: 96vh;
 }
 
-.test-tooltip p{
-  margin: 0px;
-  text-align: center;
-}
-
-.bar{
-  fill: darkolivegreen;
+#root > div > div{
+  margin: 4vh auto;
 }

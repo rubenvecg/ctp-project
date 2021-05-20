@@ -19,7 +19,7 @@ module.exports = {
             const marginLeft = width * 0.08
             const marginRight = width * 0.08
             const marginTop = height * 0.05
-            const marginBottom = height * 0.05        
+            const marginBottom = 0//height * 0.05        
             const maxBarHeight = height - marginTop - marginBottom
             const max = d3.max(values)
 

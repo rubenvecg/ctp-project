@@ -1,15 +1,9 @@
 import {React, useEffect, useState} from 'react'
 import * as d3 from "d3"
-import {getColName, getBoroName} from '../../../HelperFunctions/Indexing'
+import {getColName, getBoroName, getFileLink} from '../../../HelperFunctions/Indexing'
 import * as Plot from "./Plot"
 
-const url = {
-    boroughs: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/age_by_boro.csv",
-    schoolDistricts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/age_by_school_district.csv",
-    policePrecincts: "https://raw.githubusercontent.com/Maisa-ah/ctp-project/test-data/src/Data/age_by_police_precinct.csv"
-}
-
-const AgeSexChart = ({by, index, props, id}) => {
+const AgeSexChart = ({year, by, index, props, id}) => {
     const colName = (by == "boroughs") ? getColName(by).code : getColName(by)
 
     useEffect(() => {
@@ -18,7 +12,7 @@ const AgeSexChart = ({by, index, props, id}) => {
         let filter = []
         let total = 0
 
-        d3.csv(url[by], (r) => {            
+        d3.csv(getFileLink(year, by, 'age-sex'), (r) => {            
             if(r[colName] == index || getBoroName(r[colName]) == index){
                 filter.push({
                     value: parseInt(r["CrimeCount"]),
@@ -38,7 +32,7 @@ const AgeSexChart = ({by, index, props, id}) => {
         .catch((error) => {
             console.log(error)
         })
-    }, [by, index])
+    }, [year, by, index])
 
     return <div id={id}></div>
 }

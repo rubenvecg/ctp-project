@@ -1,15 +1,6 @@
-#map .boundary:hover{
+.boundary:hover{
     fill: tomato;
-}
-
-#map .map-tooltip{
-    background: red;
-    font-size: 14px;
-}
-
-.map-container{
-    display: grid;
-    grid-template-rows: 75% 25%;   
+    cursor: pointer;
 }
 
 text{

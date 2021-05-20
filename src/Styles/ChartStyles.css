@@ -1,5 +1,5 @@
 /*Global styling settings here*/
-#race .bar{
+.bar{
   fill: darkolivegreen;
 }
 
@@ -11,15 +11,11 @@
   fill: darkolivegreen
 }
 
-#map-bar .bar{
-  fill: darkolivegreen
-}
-
 #crime-type-tooltip{
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 #selected-crime-type > p{
@@ -27,6 +23,20 @@
 }
 
 .bar-selected{
+  transition: fill 0.5s;
+  fill: tomato;
+}
+
+.line{
+  stroke: darkslategray;
+}
+
+.point{
+  fill: darkolivegreen;
+  cursor: pointer;
+}
+
+.point:hover{
   transition: fill 0.5s;
   fill: tomato;
 }
