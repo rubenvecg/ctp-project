@@ -1,5 +1,6 @@
-import {React, useState} from 'react'
-import {getColName} from '../../HelperFunctions/Indexing'
+import {React, useState, useEffect} from 'react'
+import * as d3 from 'd3'
+import {getColName, getGeoJSONLink} from '../../HelperFunctions/Indexing'
 import ChartSection from './ChartSection'
 import {MainContainer} from './Style'
 import MapSection from './MapSection'
@@ -24,8 +25,9 @@ const Dashboard = () => {
         setCount(null)
     }
 
-    const handleYearChange = (y) => {
+    const handleYearChange = (y, c) => {
         setYear(y)
+        setCount(c)
     }
     
     return (

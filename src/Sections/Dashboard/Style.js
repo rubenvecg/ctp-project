@@ -44,8 +44,8 @@ export const MapContainer = styled.div`
 
 export const MapControls = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 10;
+    left: 10;
     display: flex;
 `
 

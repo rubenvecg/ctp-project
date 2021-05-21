@@ -16,4 +16,5 @@ export const ChartContainer = styled.div`
     border: 1px solid darkolivegreen;
     padding: 5px;
     box-shadow: #666 0px 1px 2px;
+    position: relative;
 `
