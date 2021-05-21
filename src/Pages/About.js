@@ -1,11 +1,13 @@
 import React from 'react';
-// import '../App.css';
+import '../App.css';
+import Navigation from "../Components/Plot/React/Navigation";
 
 function About() {  
 
   return (
       <div>
-        <p> hello world</p>
+        <Navigation/>
+        <h2>About Us</h2>
 
       </div>
   );
