@@ -12,12 +12,10 @@ const Bar = ({data, labels, props}) => {
         const height = fig.attr("height")
         const barCount = data.length     
 
-        //Set default values if properties are not provided
-        const fontSize = props.fontSize ? props.fontSize : height * 0.05
-        const marginLeft = props.marginLeft ? props.marginLeft : width * 0.05
+        const marginLeft = props.marginLeft ? props.marginLeft : width * 0.08
         const marginRight = props.marginRight ? props.marginRight: width * 0.08
-        const marginTop = props.marginTop ? props.marginTop : height * 0.15
-        const marginBottom = props.marginBottom ? props.marginBottom : height * 0.15        
+        const marginTop = props.marginTop ? props.marginTop : height * 0.05
+        const marginBottom = props.marginBottom ? props.marginBottom : height * 0.05        
         const maxBarHeight = height - marginTop - marginBottom
         const max = d3.max(data)
         
@@ -30,20 +28,7 @@ const Bar = ({data, labels, props}) => {
 
         const barWidth = xAxis.bandwidth() * 0.8
 
-        const chartCenterX = data.length % 2 == 0 ? 
-            (xAxis(labels[barCount/2 -1]) + xAxis(labels[barCount/2]))/2 + barWidth : 
-            xAxis(labels[Math.floor(barCount/2)]) + barWidth
-
-        const titlePositionX = chartCenterX
-        const titlePositionY = marginTop/2
-
-        const xLabelPositionX = width - marginRight
-        const xLabelPositionY = height - marginBottom/4
-
-        const yLabelPositionX = marginLeft/4
-        const yLabelPositionY = yAxis(max/2)
-                
-
+       
         const x = (d, i) => {
             return xAxis(labels[i]) + barWidth*0.2
         }
@@ -55,13 +40,6 @@ const Bar = ({data, labels, props}) => {
         const barHeight = (d, i) => {
             return d/max * maxBarHeight
         } 
-
-        const xLabelTranslate = (d, i) => {
-            const xTranslate = -2 * labels[i].length
-            const yTranslate = 1.5 * labels[i].length
-            return `translate(${xTranslate}, ${yTranslate})rotate(-45)`
-        }
-
 
         // Individual bars
         fig.selectAll("rect")
@@ -78,52 +56,7 @@ const Bar = ({data, labels, props}) => {
             .duration(1000)
             .attr("y", (d, i) => y(d,i))
             .attr("height", (d, i) => barHeight(d,i))            
-
-        //Attach axes to figure
-        fig.append("g")  
-            .attr('transform', `translate(0,${height - marginBottom})`)
-            .attr("class", "xAxis")
-            .call(d3.axisBottom(xAxis))
-
-        //Transform x axis labels
-        fig.select(".xAxis")
-            .selectAll("text")
-            .attr("text-achor", "end")
-            .attr("transform", (d, i) => xLabelTranslate(d, i))
-            .style('fill', props.textColor)
-            
-        fig.append("g")  
-            .attr('transform', `translate(${marginLeft}, 0)`)            
-            .call(d3.axisLeft(yAxis))
-            .selectAll("text")
-            .style('fill', props.textColor) 
-
-        //Title
-        fig.append("text")
-            .text(props.title)
-            .attr("x", (d, i) => titlePositionX) 
-            .attr("y", (d, i) => titlePositionY) 
-            .attr("font-size", fontSize)          
-            .attr("text-anchor", "middle")
-
-        //X-axis label
-        fig.append("text")
-            .text(props.xLabel)
-            .attr("x", (d, i) => xLabelPositionX) 
-            .attr("y", (d, i) => xLabelPositionY) 
-            .attr("font-size", fontSize)          
-            .attr("text-anchor", "end") 
-
-        //Y-axis label
-        fig.append("text")  
-            .attr("id", "yAxisTitle")                 
-            .attr("x", yLabelPositionX) 
-            .attr("y", yLabelPositionY) 
-            .attr("font-size", fontSize) 
-            .attr("text-anchor", "end")
-            .attr("transform", `rotate(-90, ${yLabelPositionX}, ${yLabelPositionY})`) 
-            .text(props.yLabel)
-        
+      
         //Add tooltip
         const toolTip = fig.append("text")
                             .attr("opacity", 0)
@@ -131,8 +64,8 @@ const Bar = ({data, labels, props}) => {
         fig.selectAll("rect")
         .on("mousemove", function (d, i) {
             toolTip.attr("opacity", 1)
-                    .attr("x", d.pageX)
-                    .attr("y", d.pageY - 10)
+                    .attr("x", d.offsetX)
+                    .attr("y", d.offsetY - 10)
                     .text(i)         
         })
         .on("mouseout", function(d, i) {

@@ -4,6 +4,7 @@ import {Figure, Hist} from '../D3';
 function Histogram({
     id,
     data,
+    labels,
     props}){
         
     const missingId = (id == null);
@@ -15,7 +16,7 @@ function Histogram({
     }else{
         return(
             <Figure class='bar' id={id} width={props.width} height={props.height}>
-                <Hist data={data} props={props}></Hist>
+                <Hist data={data} labels={labels} props={props}></Hist>
             </Figure>
         )
     }    

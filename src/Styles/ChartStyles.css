@@ -1,0 +1,42 @@
+/*Global styling settings here*/
+.bar{
+  fill: darkolivegreen;
+}
+
+#age-sex .bar-right{
+  fill: darkslategray;
+}
+
+#age-sex .bar-left{
+  fill: darkolivegreen
+}
+
+#crime-type-tooltip{
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 16px;
+}
+
+#selected-crime-type > p{
+  margin: 0px;
+}
+
+.bar-selected{
+  transition: fill 0.5s;
+  fill: tomato;
+}
+
+.line{
+  stroke: darkslategray;
+}
+
+.point{
+  fill: darkolivegreen;
+  cursor: pointer;
+}
+
+.point:hover{
+  transition: fill 0.5s;
+  fill: tomato;
+}

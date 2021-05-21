@@ -1,0 +1,8 @@
+.boundary:hover{
+    fill: tomato;
+    cursor: pointer;
+}
+
+text{
+    fill: white;
+}
