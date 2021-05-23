@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../App.scss';
 import Navigation from "../Components/Plot/React/Navigation";
 import Section from "../Components/Plot/React/Section";
 

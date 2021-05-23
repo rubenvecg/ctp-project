@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import '../App.scss';
 import Dashboard from "../Sections/Dashboard/Dashboard"
 import "../Styles/ChartStyles.css"
 import Navigation from "../Components/Plot/React/Navigation";
