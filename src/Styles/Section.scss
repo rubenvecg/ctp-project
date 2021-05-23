@@ -18,4 +18,8 @@
     color: $darkRed;
     font-weight: bolder;
   }
+  .source-links>div>a{
+    text-decoration: none;
+    color: $red;
+  }
 }
