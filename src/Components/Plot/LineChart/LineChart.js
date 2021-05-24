@@ -1,7 +1,7 @@
 import {useEffect} from 'react'
 import * as Plot from './Plot'
 
-const AreaChart = ({id, data, xCol, yCol}) => {
+const LineChart = ({id, data, xCol, yCol}) => {
 
     useEffect(() => {
         if(!data) return
@@ -13,4 +13,4 @@ const AreaChart = ({id, data, xCol, yCol}) => {
     return <div id={id}></div>;
 }
  
-export default AreaChart;
+export default LineChart;

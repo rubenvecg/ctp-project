@@ -1,33 +1,35 @@
 const d3 = require('d3')
+const { FormFile } = require('react-bootstrap')
 const styling = require('../../../HelperFunctions/Styling')
 
-let fig = null
+let xAxis = null
+let yAxis = null
 
 module.exports = {
-    drawChart: ({id, size, data, xCol, yCol}) => {
+    drawChart: ({id, size, data, xCol, yCol, selected}) => {
             d3.select(`#${id} > *`).remove()
             let [width, height] = size ? size : styling.getDimensions(id)
 
             const labels = data.map(d => d[xCol])
             const values = data.map(d => d[yCol])
 
-            fig = d3
+            const fig = d3
             .select(`#${id}`)
             .append("svg")
             .attr("width", width).attr("height", height)
         
             const marginLeft = width * 0.08
             const marginRight = width * 0.08
-            const marginTop = height * 0.05
+            const marginTop = height * 0.4
             const marginBottom = 0//height * 0.05        
             const maxBarHeight = height - marginTop - marginBottom
             const max = d3.max(values)
 
 
-            let xAxis = d3.scaleBand()                    
+            xAxis = d3.scaleBand()                    
                         .domain(labels) // Axis values            
                         .range([marginLeft, width - marginRight]) // Axis extent
-            let yAxis = d3.scaleLinear()                    
+            yAxis = d3.scaleLinear()                    
                         .domain([0, max]) // Axis values            
                         .range([height - marginBottom, height - marginBottom - maxBarHeight]) // Axis extent 
 
@@ -51,7 +53,7 @@ module.exports = {
                 .data(data)
                 .enter()
                 .append("rect")
-                .attr("class", "bar")
+                .attr("class", (d, i) => d[xCol] == selected ? "bar bar-selected" : "bar")
                 .attr("x", (d, i) => x(d, i))
                 .attr("y", (d, i) => y(0))
                 .attr("width", barWidth)
@@ -60,40 +62,41 @@ module.exports = {
                 .transition()
                 .duration(1000)
                 .attr("y", (d, i) => y(d[yCol],i))
-                .attr("height", (d, i) => barHeight(d[yCol],i))            
-            
-            //Add tooltip
-            const toolTip = fig.append("text")
-                                .attr("opacity", 0)
-            
-            fig.selectAll("rect")
-            /*.on("mousemove", function (e, d) {
-                toolTip.attr("opacity", 1)
-                        .attr("x", e.offsetX)
-                        .attr("y", e.offsetY - 10)
-                        .style("font-size", 12)
-                        .text(`${d[xCol]}: ${d[yCol]}`)         
-            })
-            .on("mouseout", function(e, d) {
-                toolTip.attr("opacity", 0)
-            })  */
+                .attr("height", (d, i) => barHeight(d[yCol],i))
     },
 
-    selectBar: (index) => {
-        if(!fig) return
+    selectBar: (id, index, valueCol) => {
+        const fig = d3.select(`#${id}`).selectAll('svg')
 
-        //toolTip.html("<p>Testing</p>")
+        fig.selectAll('text').remove()
+        fig.selectAll('path').remove()
 
-        fig.selectAll('rect').attr("class", (d, i) => {
-                if(d[index.col] == index.val)
-                    return 'bar bar-selected'
-                else
-                    return 'bar'
-            })        
+        const toolTip = fig.append('text')
+                            .text('test')
+                            .style('font-size', '12px')
+                            .style("text-anchor", "middle")  
+        
+        fig.selectAll('rect').attr("class", (d, i, n) => {
+            if(d[index.col] == index.val){
+
+                toolTip.text(d[index.col] + ": " + d[valueCol])                    
+                        .attr("x", xAxis(d[index.col]) + xAxis.bandwidth()/2)
+                        .attr("y", 10)
+                fig.append('path').attr("d",
+                `M${xAxis(d[index.col]) + xAxis.bandwidth()/2} 15 
+                L${xAxis(d[index.col]) + xAxis.bandwidth()/2} ${yAxis(d[valueCol])}`).style("stroke", "white")
+                
+                return 'bar bar-selected'
+            }else{                    
+                return 'bar'
+            }
+        })      
     },
 
-    clearSelected: () => {
-        if(!fig) return
+    clearSelected: (id) => {
+        const fig = d3.select(`#${id}`).selectAll('svg')
+        fig.selectAll('text').remove()
+        fig.selectAll('path').remove()
         fig.selectAll('rect').attr("class", "bar")
     }
 }

@@ -1,7 +1,7 @@
 import {React, useState, useEffect} from 'react'
 import {ChartSectionContainer, LoadingContainer, LoadingSpinner} from './Style'
 import {Charts, Chart} from '../../Components/Chart'
-import {RaceChart, AgeSexChart, CrimeChart, AreaChart} from '../../Components/Plot'
+import {RaceChart, AgeSexChart, CrimeChart, LineChart} from '../../Components/Plot'
 import Banner from './Banner'
 import * as DataLoading from './DataLoading'
 
@@ -26,9 +26,9 @@ const ChartSection = ({year, boundary, index, count}) => {
 
     }, [year, boundary, index])
 
-    const Area = () => {        
+    const Line = () => {        
         if(lineData){
-            return <AreaChart data={lineData} xCol='year' yCol='count' id="yearly-count"></AreaChart>                
+            return <LineChart data={lineData} xCol='year' yCol='count' id="yearly-count"></LineChart>                
         }else{
             if(index){
                 return (
@@ -94,7 +94,7 @@ const ChartSection = ({year, boundary, index, count}) => {
 
             <Charts id='charts'>                
                 <Chart title='test-title'>
-                    {Area()}
+                    {Line()}
                 </Chart>
 
                 <Chart title='test-title'>

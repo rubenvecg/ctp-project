@@ -56,8 +56,8 @@ const MapSection = ({year, boundary, index, onBoundaryClick, onBoundaryChange, o
 
         return (
                 <MapContainer>
-                    <GeoJSONMap data={mapData} year={year} boundary={boundary} id="map"
-                    onBoundaryClick={(d) => {onBoundaryClick(d)}} showBar>
+                    <GeoJSONMap data={mapData} year={year} boundary={boundary} index={index}
+                    id="map" onBoundaryClick={(d) => {onBoundaryClick(d)}} showBar>
         
                     <MapControls>
                         <select value={boundary} onChange={(e) => onBoundaryChange(e.target.value)}>
