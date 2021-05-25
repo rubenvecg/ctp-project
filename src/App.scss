@@ -1,5 +1,6 @@
+@import './Styles/themes.scss';
 .App {
-  text-align: center;
+  text-align: center;  
 }
 
 .App-logo {
@@ -35,4 +36,18 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+#root{
+  width: 1100px;
+  margin: 0 auto;
+  font-family: 'Roboto', sans-serif;
+}
+
+#root > div{
+  height: 96vh;
+}
+
+#root > div > div{
+  margin: 4vh auto;
 }

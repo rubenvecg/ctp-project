@@ -1,0 +1,25 @@
+@import './themes.scss';
+.About-container{
+  display: flex;
+  margin:0 auto !important;
+  border-top:0.1em solid $darkRed;
+  // border-bottom:0.1em dashed $darkRed;
+  *{
+    margin:0.5em;
+  }
+  img{
+    width: 20%;
+    height: auto;
+    margin: 1em;
+  }
+  .Section-container{
+    text-align: left !important;
+  }
+}
+.about-links{
+  img{
+    float: right;
+    width: 2em;
+    margin: 0em 1em 1em 0.5em;
+  }
+}

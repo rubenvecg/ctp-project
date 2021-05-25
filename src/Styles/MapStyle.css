@@ -1,0 +1,11 @@
+.boundary{
+    cursor: pointer;
+}
+
+.boundary.selected{
+    fill: tomato;
+}
+
+text{
+    fill: white;
+}

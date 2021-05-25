@@ -1,0 +1,38 @@
+@import './themes.scss';
+.nav-container{
+  margin: 0 !important;
+  padding:0;
+  display: flex;
+  justify-content: flex-end;
+}
+.nav-line{
+  border-top: 0.15em dashed $darkRed;
+  width: 100%;
+}
+nav{
+  display: flex;
+  height: 3.2em;
+  .navigation{
+    height: 3em;
+    margin: 0;
+  }
+  .routes{
+    text-decoration: none;
+    color: $darkRed;
+  }
+  .routes>h4{
+    padding: 1em;
+    border: 0.1em solid $darkRed;
+    border-bottom: none;
+    border-radius: 0.3em 0.3em 0 0;
+    margin:0;
+  }
+  .routes.selected{
+    color: $red;
+    font-weight: bolder;
+  }
+  .routes.selected>h4{
+    border: 0.1em solid $red;
+    border-bottom: none;
+  }
+}
