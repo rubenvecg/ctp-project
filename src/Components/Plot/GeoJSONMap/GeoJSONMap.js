@@ -3,20 +3,35 @@ import "../../../Styles/MapStyle.css"
 import * as Plot from './Plot'
 import * as BarPlot from '../BarChart/Plot'
 
-const GeoJSONMap = ({id, data, onBoundaryClick, showBar, children}) => {
+const GeoJSONMap = ({id, data, showBar, children, index, onBoundaryClick, onBoundaryOver}) => {
 
     useEffect(() => {
-            Plot.drawMap({id, g: data.g, colorProp: data.colorCol,
-                onBoundaryOver: (d) => BarPlot.selectBar({
+            Plot.drawMap({
+                id, 
+                g: data.g, 
+                indexCol: data.indexCol, 
+                colorCol: data.colorCol, 
+                selected: index,
+                onBoundaryClick: (d) => onBoundaryClick(d),
+                onBoundaryOver: (d) => BarPlot.selectBar(id+"-bar", {
                     col: data.indexCol,
                     val: d.properties[data.indexCol]
-                }),
-                onBoundaryOut: () => BarPlot.clearSelected(),            
-                onBoundaryClick: (d) => onBoundaryClick(d)
+                }, data.colorCol),
+                onBoundaryOver: (d) => BarPlot.selectBar(id+"-bar", {
+                    col: data.indexCol,
+                    val: d.properties[data.indexCol]
+                }, data.colorCol)
             })
 
-            if(showBar)
-                BarPlot.drawChart({id: id+'-bar', data: data.g.features.map(f => f.properties), xCol: data.indexCol, yCol: data.colorCol})         
+            if(showBar){
+                BarPlot.drawChart({
+                    id: id+'-bar', 
+                    data: data.g.features.map(f => f.properties), 
+                    xCol: data.indexCol, 
+                    yCol: data.colorCol,
+                    selected: index
+                })
+            }         
     }, [data])    
     
     return(             

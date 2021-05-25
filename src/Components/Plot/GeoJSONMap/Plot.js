@@ -2,7 +2,7 @@ const d3 = require('d3')
 const styling = require('../../../HelperFunctions/Styling')
 
 module.exports = {
-    drawMap : ({id, g, colorProp, onBoundaryClick, onBoundaryOver, onBoundaryOut}) => {
+    drawMap : ({id, g, indexCol, colorCol, selected, onBoundaryClick, onBoundaryOver}) => {
 
             const features = g.features
 
@@ -22,7 +22,7 @@ module.exports = {
 
             const properties = features.map(d => d.properties)
             
-            const values = properties.map(d => parseInt(d[colorProp]))            
+            const values = properties.map(d => parseInt(d[colorCol]))            
             const min = d3.min(values)
             const max = d3.max(values) 
             
@@ -42,21 +42,28 @@ module.exports = {
                 .data(features)
                 .enter()
                 .append("path")
-                .attr("class", "boundary")
+                .attr("class", (d, i) => d.properties[indexCol] == selected ? "boundary selected" : "boundary")
                 .attr("d", d3.geoPath()
                         .projection(projection))
-                .attr("fill", (d, i) => color(d.properties[colorProp]))
+                .attr("fill", (d, i) => color(d.properties[colorCol]))
+
                 .on("mouseover", (e, d) => {  
-                    /*toolTip.html(`<p>Test</p>`).style("opacity", 1).style("position", "absolute")
-                    .style("top", "50%").style("left", 0).style("width", "100px").style("height", "100px")*/
+                    svg.selectAll("path").attr("class", "boundary")
+                    d3.select(e.target).attr("class", "boundary selected")
                     onBoundaryOver(d)
-                    })
-                .on("mouseout", (e) => {
-                    toolTip.style("opacity", 0)
-                    onBoundaryOut()
-                    })
+                })
+                .on("mouseout", (e) => {                    
+                    svg.selectAll("path")
+                        .attr("class", (d, i) => {
+                            if(d.properties[indexCol] == selected){
+                                onBoundaryOver(d)
+                                return "boundary selected"
+                            }
+                            return "boundary"
+                        })                    
+                })
                 .on("click", (e, d) => {
-                    onBoundaryClick(d.properties) 
+                    onBoundaryClick(d.properties)
                 })
 
     }
