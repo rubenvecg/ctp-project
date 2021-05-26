@@ -16,7 +16,7 @@ module.exports = {
             .append("svg")
             .attr("width", width).attr("height", height)
 
-            const fontSize = width/height * 5
+            const fontSize = width/height * 7
         
             const marginLeft = 0
             const marginRight = 0

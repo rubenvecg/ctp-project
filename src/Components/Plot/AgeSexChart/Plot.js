@@ -99,5 +99,19 @@ module.exports = {
             .attr("x", (d) => xAxis2(0))
             .attr("y", (d, i) => yAxis(labels1[i]) + 2.2 * fontSize)
             .style("font-size", fontSize * 0.8)
+        
+        fig.append("text")
+            .text("M")
+            .attr("class", "sex-label")
+            .attr("x", xAxis2(0))
+            .attr("y", 10)
+            .style("font-size", fontSize * 0.8)
+        fig.append("text")
+            .text("F")
+            .attr("class", "sex-label")
+            .attr("x", xAxis1(0))
+            .attr("y", 10)
+            .style("font-size", fontSize * 0.8)
+            .style("text-anchor", "end")
     }
 }

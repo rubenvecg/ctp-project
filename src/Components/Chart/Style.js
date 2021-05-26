@@ -17,4 +17,8 @@ export const ChartContainer = styled.div`
     padding: 5px;
     box-shadow: #666 0px 1px 2px;
     position: relative;
+    
+    & .chart-title{
+        text-align: center;
+    }
 `

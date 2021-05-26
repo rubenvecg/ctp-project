@@ -93,19 +93,19 @@ const ChartSection = ({year, boundary, index, count}) => {
             <Banner year={year} boundary={boundary} index={index} count={count}></Banner>
 
             <Charts id='charts'>                
-                <Chart title='test-title'>
+                <Chart title='Crime Count by Year'>
                     {Line()}
                 </Chart>
 
-                <Chart title='test-title'>
+                <Chart title='Most Reported Crimes'>
                     {Crime()}
                 </Chart>
 
-                <Chart title='Test title'>
+                <Chart title='Age and Sex'>
                     {AgeSex()}
                 </Chart>
 
-                <Chart title='Test title'>
+                <Chart title='Race'>
                     {Race()}
                 </Chart>
             </Charts>            

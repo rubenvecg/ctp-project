@@ -3,7 +3,7 @@ import {ChartContainer} from './Style'
 const Chart = ({title, children}) => {
     return (
         <ChartContainer>
-            <div>{title}</div>
+            <div class="chart-title">{title}</div>
             <div>
                 {children}
             </div>
