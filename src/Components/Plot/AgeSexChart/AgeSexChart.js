@@ -7,7 +7,7 @@ const AgeSexChart = ({id, data, x, y, subCat, c1, c2}) => {
         drawChart({
             id, data, x, y, subCat, c1, c2
         })
-    }, data)
+    }, [data])
 
     return <div id={id}></div>
 }
