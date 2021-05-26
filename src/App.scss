@@ -15,7 +15,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  font-family: 'Roboto', sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -50,7 +50,4 @@
 
 #root > div > div{
   margin: 4vh auto;
-}
-.Section-disclaimer{
-  text-align: left;
 }
