@@ -6,6 +6,7 @@ import AboutCard from "../Components/Plot/React/AboutCard";
 import Source from "../Components/Plot/React/Source";
 import placeholder from "../Images/placeholder.png";
 import maisa from "../Images/maisa.jpg";
+import ruben from "../Images/ruben.jpg";
 import react from "../Images/react-icon.png";
 import d3 from "../Images/d3.png";
 import pandas from "../Images/pandas_logo.png";
@@ -39,7 +40,7 @@ function About() {
         s2Title="NYC OpenData, Police Department (NYPD); retrieved from https://data.cityofnewyork.us/."
         />
         <AboutCard 
-        img={placeholder} 
+        img={ruben} 
         github="https://github.com/rubenvecg"
         linkedin="https://www.linkedin.com/in/ruben-vecino/"
         name="Ruben Vecino" 

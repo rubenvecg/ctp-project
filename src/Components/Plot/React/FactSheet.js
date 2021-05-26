@@ -8,10 +8,10 @@ function FactSheet(props) {
     <div className="Section-title">Quick Facts
     </div>
     <div>
-      African-Americans were arrested the most in Brooklyn compared to other races in all years School District.
+      African-Americans were arrested the most in Brooklyn compared to other races in all years.
     </div>
     <div>
-      In Manhattan crime count is significantly higher than the rest of the districts. This is likely due to the area of the district (almost half the borough in size).
+      Crime Count for School District #2 in Manhattan is significantly higher than the rest of the districts. This is likely due to the area of the district (almost half the borough in size).
     </div>
     <div>
       Police Precinct #121 opened for business in 2013, so there is no data available between 2006 and 2012.
