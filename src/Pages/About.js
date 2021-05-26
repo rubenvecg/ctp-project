@@ -5,6 +5,7 @@ import Section from "../Components/Plot/React/Section";
 import AboutCard from "../Components/Plot/React/AboutCard";
 import Source from "../Components/Plot/React/Source";
 import placeholder from "../Images/placeholder.png";
+import maisa from "../Images/maisa.jpg";
 import react from "../Images/react-icon.png";
 import d3 from "../Images/d3.png";
 import pandas from "../Images/pandas_logo.png";
@@ -45,7 +46,7 @@ function About() {
         text="Originally from Barranquilla, Colombia. I am an undergraduate Computer Systems Technology student at the New York City College of Technology (City Tech). My professional interests include Software Engineering, Data Analytics & Visualization, and Full Stack Web Development. I am currently looking for internships and/or work opportunities."
         />
         <AboutCard 
-        img={placeholder} 
+        img={maisa} 
         github="https://github.com/Maisa-ah"
         linkedin="https://www.linkedin.com/in/maisa-ahmad/"
         name="Maisa Ahmad" 
