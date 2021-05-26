@@ -1,12 +1,12 @@
 import {useEffect} from 'react'
-import * as Plot from './Plot'
+import {drawChart} from './Plot'
 
 const LineChart = ({id, data, xCol, yCol}) => {
 
     useEffect(() => {
         if(!data) return
 
-        Plot.drawChart({id, data, xCol, yCol})
+        drawChart({id, data, xCol, yCol})
         
     }, [data])
 

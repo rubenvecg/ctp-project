@@ -1,7 +1,7 @@
 import {React, useEffect} from "react"
 import "../../../Styles/MapStyle.css"
 import * as Plot from './Plot'
-import * as BarPlot from '../BarChart/Plot'
+import {drawChart, selectBar} from '../BarChart/Plot'
 
 const GeoJSONMap = ({id, data, showBar, children, index, onBoundaryClick, onBoundaryOver}) => {
 
@@ -13,18 +13,18 @@ const GeoJSONMap = ({id, data, showBar, children, index, onBoundaryClick, onBoun
                 colorCol: data.colorCol, 
                 selected: index,
                 onBoundaryClick: (d) => onBoundaryClick(d),
-                onBoundaryOver: (d) => BarPlot.selectBar(id+"-bar", {
+                onBoundaryOver: (d) => selectBar(id+"-bar", {
                     col: data.indexCol,
                     val: d.properties[data.indexCol]
                 }, data.colorCol),
-                onBoundaryOver: (d) => BarPlot.selectBar(id+"-bar", {
+                onBoundaryOver: (d) => selectBar(id+"-bar", {
                     col: data.indexCol,
                     val: d.properties[data.indexCol]
                 }, data.colorCol)
             })
 
             if(showBar){
-                BarPlot.drawChart({
+                drawChart({
                     id: id+'-bar', 
                     data: data.g.features.map(f => f.properties), 
                     xCol: data.indexCol, 

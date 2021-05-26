@@ -1,10 +1,10 @@
 import {React, useEffect} from 'react'
-import * as Plot from "./Plot"
+import {drawChart} from "./Plot"
 
 const AgeSexChart = ({id, data, x, y, subCat, c1, c2}) => {
 
     useEffect(() => {
-        Plot.drawChart({
+        drawChart({
             id, data, x, y, subCat, c1, c2
         })
     }, data)

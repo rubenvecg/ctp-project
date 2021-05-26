@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import * as Plot from './Plot'
+import {drawChart} from './Plot'
 
 const gridStyle = {
     display: 'grid',
@@ -13,7 +13,7 @@ const CrimeChart = ({data, xCol, yCol, id}) => {
     const [selected, setSelected] = useState(null)
 
     useEffect(() => {         
-        Plot.drawChart({id, data, xCol, yCol, top: top}, (s) => {
+        drawChart({id, data, xCol, yCol, top: top}, (s) => {
             setSelected(s)
         }) 
     }, [data, top]) 

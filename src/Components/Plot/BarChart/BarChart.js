@@ -1,8 +1,6 @@
 import React from 'react'
-import * as d3 from 'd3'
 import {useEffect} from 'react'
-import {getDimensions} from '../../../HelperFunctions/Styling'
-import * as Plot from './Plot'
+import {drawChart} from './Plot'
 
 const BarChart = ({
     id,
@@ -13,7 +11,7 @@ const BarChart = ({
 
     useEffect(() => {
         if(!data) return
-            Plot.drawChart({id, size, data, labels})   
+            drawChart({id, size, data, labels})   
     }, [data])
     
     return <div id={id}></div>
