@@ -7,8 +7,8 @@ import {MapContainer, MapControls, LoadingContainer, LoadingSpinner} from './Sty
 const buildYearOptions = () => {
     const options = []
     for(let y=2020; y>=2006; y--){
-        options.push(<option>{y}</option>)
-    }
+        options.push(<option key={'y-' + y}>{y}</option>)
+    } 
     return options
 }
 
@@ -60,13 +60,13 @@ const MapSection = ({year, boundary, index, onBoundaryClick, onBoundaryChange, o
                     id="map" onBoundaryClick={(d) => {onBoundaryClick(d)}} showBar>
         
                     <MapControls>
-                        <select value={boundary} onChange={(e) => onBoundaryChange(e.target.value)}>
+                        <select className='select' value={boundary} onChange={(e) => onBoundaryChange(e.target.value)}>
                             <option value='boroughs'>Boroughs</option>
                             <option value='schoolDistricts'>School Districts</option>
                             <option value='policePrecincts'>Police Precincts</option>
                         </select>
         
-                        <select value={year} onChange={(e) => onYearChange(e.target.value)}>
+                        <select className='select' value={year} onChange={(e) => onYearChange(e.target.value)}>
                             {buildYearOptions()}
                         </select>     
                     </MapControls>  

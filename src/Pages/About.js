@@ -24,7 +24,7 @@ function About() {
         retrieved from the New York City Police Department between the years 2006 and 2020 
         across different city jurisdictions. We worked with a dataset with over 5 million 
         entries containing the location of the crime, type of crime and perpetrator descriptions."
-        disclaimer="Disclaimer: The objective for this project is not to provide any insights related to the city’s 
+        disclaimer="The objective for this project is not to provide any insights related to the city’s 
         crime activity since the data comes directly from NYPD. Any biases or inconsistencies are 
         related directly with the creation of this dataset and NYPD’s operations."
         react={react}

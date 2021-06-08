@@ -1,7 +1,7 @@
 import React from 'react';
 import '../App.scss';
 import Dashboard from "../Sections/Dashboard/Dashboard";
-import "../Styles/ChartStyles.css";
+import "../Styles/ChartStyles.scss";
 import Navigation from "../Components/Plot/React/Navigation";
 import FactSheet from "../Components/Plot/React/FactSheet";
 

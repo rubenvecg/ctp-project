@@ -1,15 +1,14 @@
+@import './themes.scss';
+
 .tool-wrapper{
-  margin:1em;
-  // display: flex;
-  // justify-content: center;
+  margin: 1em 15em;
   display:grid;
   grid-template-columns: repeat(5, 1fr);
+  background: $lighterBg;
   place-items: center;
   *{
     margin:0.5em;
-    // a{
-    //   margin:5em;
-    // }
+
     img{
       height: 3rem;
     }

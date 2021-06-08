@@ -3,7 +3,7 @@
 .Section-container{
   display: flex;
   flex-direction: column;
-  color: $red;
+  color: $darkBlue;
   margin-bottom: 0em;
 
   *{
@@ -15,21 +15,24 @@
   .Section-title{
     text-transform: uppercase;
     font-size:0.9rem;
-    color: $darkRed;
+    color: $lightBlue;
     font-weight: bolder;
   }
   .source-links>div>a{
     text-decoration: none;
-    color: $red;
+    color: $darkBlue;
   }
   .section-disclaimer{
-    color:$bgcolor;
     align-self: center;
     padding:0.2em;
-    background-color: $darkRed;
+    background-color: $disclaimerColor;
     line-height: 1;
+
+    .Section-title, p{
+      color:$lighterBg;
+    }
   }
 }
 .fact{
-  border-top:0.1em solid $darkRed;
+  border-top:0.1em solid $lightBlue;
 }

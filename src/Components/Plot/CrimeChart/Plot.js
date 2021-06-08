@@ -20,7 +20,7 @@ export const drawChart = ({id, data, xCol, yCol, top}, onSelect) => {
     const marginLeft = 0
     const marginRight = 0
     const marginTop = height * 0.05
-    const marginBottom = height * 0.05        
+    const marginBottom = 0//height * 0.05        
     const maxBarHeight = height - marginTop - marginBottom - fontSize
     const max = d3.max(values)
 

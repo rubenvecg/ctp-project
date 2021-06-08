@@ -1,5 +1,5 @@
 import {React, useEffect} from "react"
-import "../../../Styles/MapStyle.css"
+import "../../../Styles/ChartStyles.scss"
 import * as Plot from './Plot'
 import {drawChart, selectBar} from '../BarChart/Plot'
 

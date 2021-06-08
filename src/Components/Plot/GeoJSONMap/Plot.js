@@ -17,7 +17,7 @@ export const drawMap = ({id, g, indexCol, colorCol, selected, onBoundaryClick, o
         const projection = d3.geoMercator()
                                 .center(d3.geoCentroid(g))
                                 .translate([width/2, height/2])
-                                .scale(50000)
+                                .scale(42000)
 
         const properties = features.map(d => d.properties)
         
@@ -28,7 +28,7 @@ export const drawMap = ({id, g, indexCol, colorCol, selected, onBoundaryClick, o
 
         const color = d3.scaleLinear()
                 .domain([min, max])
-                .range(["white", "darkolivegreen"])
+                .range(["white", "#2A79B5"])
 
         const toolTip = d3.select(`#${id}`)
                     .append("div")

@@ -22,15 +22,15 @@ export const BannerContainer = styled.div`
 
 export const Summary = styled.div`
     & > div{
-        width: 150px;
         display: flex;
         justify-content: space-between;
+        gap: 10px;
     }
 `
 export const ChartSectionContainer = styled.div`
     position: relative;
     display: grid;
-    grid-template-rows: 40px 1fr;
+    grid-template-rows: 30px 1fr;
     grid-gap: 30px;
     height: 100%;
 `
@@ -55,7 +55,7 @@ export const LoadingContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(47, 79, 79, 0.8);
+    background: hsla(206, 27%, 25%, 0.8);
     z-index: 8;
     display: flex;
     flex-direction: column;
@@ -69,8 +69,8 @@ export const LoadingContainer = styled.div`
 export const LoadingSpinner = styled.div`
     width: 20px;
     height: 20px;
-    border: solid 5px white;
-    border-top: solid 5px darkslategrey;
+    border: solid 5px #F2F4F5;
+    border-top: solid 5px #2F414F;
     border-radius: 50%;
     -webkit-animation: spin 2s linear infinite;
     animation: spin 2s linear infinite;

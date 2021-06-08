@@ -1,15 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
-$bgcolor: #212121;
-$darkRed: #903749;
-$red: #E84545;
+$bgcolor: #D1D9DC;
+$lighterBg: #E8ECED;
+$lightBlue: #2A79B5;
+$darkBlue: #2F414F;
+$darkGrey: #78797A;
+$disclaimerColor: #FB4D3D;
 
 html{
   background-color: $bgcolor;
-  // font-family: 'Barlow', sans-serif;
+  font-family: 'Barlow', sans-serif;
 }
-:export{
-  bgcolor: $bgcolor;
-  darkRed: $darkRed;
-  red: $red;
+
+p, h1, h2{
+  color: $darkBlue;
+}
+
+select.select{
+  border: 1px solid $darkGrey;
+  color: $darkBlue;
+  background-color: $lighterBg;
+  border-radius: 5px;
 }

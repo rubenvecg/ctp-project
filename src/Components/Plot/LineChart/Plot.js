@@ -60,14 +60,12 @@ export const drawChart = ({id, data, xCol, yCol}) => {
             svg.append('path')
                 .attr("d", `M${xAxis(d[xCol]) + xAxis.bandwidth()/2} ${yAxis(d[yCol]) + 4} 
                             L${xAxis(d[xCol]) + xAxis.bandwidth()/2} ${yAxis(0)}`)
-                .style("stroke", "white")
                 .attr("class", "tooltip-line") 
                 
             //Draw line above point
             svg.append('path')
                 .attr("d", `M${xAxis(d[xCol]) + xAxis.bandwidth()/2} ${yAxis(d[yCol]) - 4} 
                             L${xAxis(d[xCol]) + xAxis.bandwidth()/2} ${e.offsetY - 20}`)
-                .style("stroke", "white")
                 .attr("class", "tooltip-line") 
         })
         .on("mouseout", () => {

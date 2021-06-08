@@ -83,7 +83,7 @@ export const selectBar =  (id, index, valueCol) => {
                     .attr("y", 10)
             fig.append('path').attr("d",
             `M${xAxis(d[index.col]) + xAxis.bandwidth()/2} 15 
-            L${xAxis(d[index.col]) + xAxis.bandwidth()/2} ${yAxis(d[valueCol])}`).style("stroke", "white")
+            L${xAxis(d[index.col]) + xAxis.bandwidth()/2} ${yAxis(d[valueCol])}`)
             
             return 'bar bar-selected'
         }else{                    

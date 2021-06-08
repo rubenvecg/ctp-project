@@ -14,7 +14,12 @@ function Section(props) {
       <a href="https://geopandas.org/" target="_blank"><img src={props.geopandas}/></a>
       <a href="https://jupyter.org/" target="_blank"><img src={props.jupyter}/></a>
     </ToolContainer>
-    <div class="section-disclaimer">{props.disclaimer}</div>
+    <div className="section-disclaimer">
+      <div className="Section-title">Disclaimer:</div>
+        <p>
+          {props.disclaimer}
+        </p>
+    </div>
   </div>
 );
 }

@@ -12,13 +12,8 @@ export const ChartContainer = styled.div`
     display: grid;
     flex-direction: column;
     grid-template-rows: 30px 1fr;
-    border: 1px solid red;
-    border: 1px solid darkolivegreen;
+    border: 1px solid #2F414F;
     padding: 5px;
     box-shadow: #666 0px 1px 2px;
     position: relative;
-    
-    & .chart-title{
-        text-align: center;
-    }
 `

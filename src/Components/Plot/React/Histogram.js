@@ -15,7 +15,7 @@ function Histogram({
         )
     }else{
         return(
-            <Figure class='bar' id={id} width={props.width} height={props.height}>
+            <Figure className='bar' id={id} width={props.width} height={props.height}>
                 <Hist data={data} labels={labels} props={props}></Hist>
             </Figure>
         )
