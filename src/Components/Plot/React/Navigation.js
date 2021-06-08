@@ -24,7 +24,7 @@ function Navigation(props) {
           ))
         }
     </nav>
-    <div class="nav-container">
+    <div className="nav-container">
       <div className="nav-line"></div>
     </div>
   </>

@@ -20,12 +20,12 @@ function About() {
         <Navigation/>
         <Section 
         title="About us" 
-        text="NYC Crime View is a visualization app that enables you to view crime data 
-        retrieved from the New York City Police Department between the years 2006 and 2020 
+        text="NYC Crime View is a visualization app containing crime data 
+        retrieved from the New York City Police Department between 2006 and 2020 
         across different city jurisdictions. We worked with a dataset with over 5 million 
         entries containing the location of the crime, type of crime and perpetrator descriptions."
-        disclaimer="The objective for this project is not to provide any insights related to the city’s 
-        crime activity since the data comes directly from NYPD. Any biases or inconsistencies are 
+        disclaimer="The objective for this project is to show the data provided by the NYPD and should not
+        be used to generate any insights related to the larger populations depicted on this dataset. Any biases or inconsistencies are 
         related directly with the creation of this dataset and NYPD’s operations."
         react={react}
         d3={d3}

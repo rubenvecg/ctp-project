@@ -23,7 +23,7 @@ function PieChart(props){
         )
     }else{
         return(
-            <div class='pie chart' id={props.id}></div>
+            <div className='pie chart' id={props.id}></div>
         )
     }    
 }

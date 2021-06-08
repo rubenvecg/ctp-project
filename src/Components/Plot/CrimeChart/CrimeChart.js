@@ -20,7 +20,7 @@ const CrimeChart = ({data, xCol, yCol, id}) => {
 
     return (<div style={gridStyle}>
                 <div style={{position: 'relative'}}>
-                    <select class='select' value={top} onChange={(e) => setTop(e.target.value)}>
+                    <select className='select' value={top} onChange={(e) => setTop(e.target.value)}>
                         <option>5</option>
                         <option>10</option>
                         <option>15</option>

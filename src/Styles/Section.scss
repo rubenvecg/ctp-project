@@ -6,12 +6,6 @@
   color: $darkBlue;
   margin-bottom: 0em;
 
-  *{
-    margin: 0.5em;
-    font-size: 1rem;
-    font-family: 'Roboto', sans-serif;
-    line-height: 2;
-  }
   .Section-title{
     text-transform: uppercase;
     font-size:0.9rem;
@@ -24,7 +18,10 @@
   }
   .section-disclaimer{
     align-self: center;
-    padding:0.2em;
+    margin: 5em 3em;
+    padding: 2.2em;
+    text-align: justify;
+    width: 450px;
     background-color: $disclaimerColor;
     line-height: 1;
 
@@ -35,4 +32,11 @@
 }
 .fact{
   border-top:0.1em solid $lightBlue;
+}
+
+.Section-container > *{
+  margin: 0.5em;
+  font-size: 1rem;
+  font-family: 'Roboto', sans-serif;
+  line-height: 2;
 }
